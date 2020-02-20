@@ -5,4 +5,5 @@ applications:
       - route: pal-tracker-saravanakumarganesh.cfapps.io
     env:
       WELCOME_MESSAGE: Hello from the review environment
-      JBP_CONFIG_OPEN_JDK_JRE: '{ jre: { version: 11.+ } }' 
+      JBP_CONFIG_OPEN_JDK_JRE: '{ jre: { version: 11.+ } }'
+      
