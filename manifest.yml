@@ -5,7 +5,5 @@ applications:
     routes:
       - route: pal-trakcer-saravanakumarganesh.cfapps.io
     env:
-      WELCOME_MESSAGE: Hello from the review environmt
+      WELCOME_MESSAGE: Hello from the review environment
       JBP_CONFIG_OPEN_JDK_JRE: '{ jre: { version: 11.+ } }'
-
-      
