@@ -21,6 +21,11 @@ public class JdbcTimeEntryRepository implements TimeEntryRepository {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
+//    public JdbcTimeEntryRepository(JdbcTemplate jdbcTemplate) {
+//        this.jdbcTemplate = jdbcTemplate;
+//        this.jdbcTemplate = jdbcTemplate;
+//     }
+
     @Override
     public TimeEntry create(TimeEntry timeEntry) {
         KeyHolder generatedKeyHolder = new GeneratedKeyHolder();
@@ -50,6 +55,15 @@ public class JdbcTimeEntryRepository implements TimeEntryRepository {
                 new Object[]{id},
                 extractor);
     }
+
+//    @Override
+//    public TimeEntry find(Long id) {
+//        return jdbcTemplate.query(
+//                "SELECT id, project_id, user_id, date, hours FROM time_entries WHERE id = ?",
+//                new Object[]{id},
+//                extractor);
+//    }
+
 
     @Override
     public List<TimeEntry> list() {
