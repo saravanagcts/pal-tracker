@@ -4,16 +4,16 @@ import io.micrometer.core.instrument.Counter;
 import io.micrometer.core.instrument.DistributionSummary;
 import io.micrometer.core.instrument.MeterRegistry;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import java.util.List;
 
+import java.util.List;
 
 @RestController
 @RequestMapping("/time-entries")
 public class TimeEntryController {
-    private final TimeEntryRepository timeEntriesRepo;
+
+    private TimeEntryRepository timeEntriesRepo;
     private final DistributionSummary timeEntrySummary;
     private final Counter actionCounter;
 
@@ -28,7 +28,7 @@ public class TimeEntryController {
     }
 
     @PostMapping
-    public ResponseEntity create(@RequestBody TimeEntry timeEntry) {
+    public ResponseEntity<TimeEntry> create(@RequestBody TimeEntry timeEntry) {
         TimeEntry createdTimeEntry = timeEntriesRepo.create(timeEntry);
         actionCounter.increment();
         timeEntrySummary.record(timeEntriesRepo.list().size());
@@ -37,7 +37,7 @@ public class TimeEntryController {
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<TimeEntry> read(@PathVariable long id) {
+    public ResponseEntity<TimeEntry> read(@PathVariable Long id) {
         TimeEntry timeEntry = timeEntriesRepo.find(id);
         if (timeEntry != null) {
             actionCounter.increment();
@@ -54,7 +54,7 @@ public class TimeEntryController {
     }
 
     @PutMapping("{id}")
-    public ResponseEntity update(@PathVariable long id, @RequestBody TimeEntry timeEntry) {
+    public ResponseEntity<TimeEntry> update(@PathVariable Long id, @RequestBody TimeEntry timeEntry) {
         TimeEntry updatedTimeEntry = timeEntriesRepo.update(id, timeEntry);
         if (updatedTimeEntry != null) {
             actionCounter.increment();
@@ -65,12 +65,11 @@ public class TimeEntryController {
     }
 
     @DeleteMapping("{id}")
-    public ResponseEntity delete(@PathVariable long id) {
+    public ResponseEntity delete(@PathVariable Long id) {
         timeEntriesRepo.delete(id);
         actionCounter.increment();
         timeEntrySummary.record(timeEntriesRepo.list().size());
+
         return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
-
-
 }
