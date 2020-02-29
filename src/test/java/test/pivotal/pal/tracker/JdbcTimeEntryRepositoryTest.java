@@ -29,7 +29,7 @@ public class JdbcTimeEntryRepositoryTest {
         subject = new JdbcTimeEntryRepository(dataSource);
 
         jdbcTemplate = new JdbcTemplate(dataSource);
-        jdbcTemplate.execute("TRUNCATE time_entries");
+        jdbcTemplate.execute("TRUNCATE TABLE time_entries");
 
         TimeZone.setDefault(TimeZone.getTimeZone("UTC"));
     }
