@@ -3,6 +3,7 @@ package io.pivotal.pal.tracker;
 import org.springframework.boot.actuate.health.Health;
 import org.springframework.boot.actuate.health.HealthIndicator;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Component
 public class TimeEntryHealthIndicator implements HealthIndicator {

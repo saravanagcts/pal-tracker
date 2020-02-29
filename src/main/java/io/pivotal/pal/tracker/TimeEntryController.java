@@ -47,13 +47,6 @@ public class TimeEntryController {
         }
     }
 
-    public ResponseEntity getResponseEntity(TimeEntry timeEntry) {
-        if (timeEntry != null) {
-            return ResponseEntity.ok(timeEntry);
-        }
-        return ResponseEntity.notFound().build();
-    }
-
     @GetMapping
     public ResponseEntity<List<TimeEntry>> list() {
         actionCounter.increment();
